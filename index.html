@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>UD Indonesia | Active–Passive Visualizer</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <main class="container">
+    <header class="hero">
+      <div class="eyebrow">MINI ASSIGNMENT · UNIVERSAL DEPENDENCIES v2</div>
+      <h1>Dari <em>membaca</em> ke <em>dibaca</em></h1>
+      <p>Jelajahi bagaimana <strong>dependency relations</strong> berubah ketika kalimat Bahasa Indonesia menjadi <strong>passive voice</strong>.</p>
+      <div class="team-badge">Nama: Mohamad Arif</div>
+    </header>
+
+    <section class="controls panel" aria-label="Kontrol visualisasi">
+      <div>
+        <label class="control-label" for="mode">Tampilan dependency tree</label>
+        <select id="mode">
+          <option value="bandingkan">Bandingkan keduanya</option>
+          <option value="aktif">Active voice saja</option>
+          <option value="pasif">Passive voice saja</option>
+        </select>
+      </div>
+      <label class="check"><input type="checkbox" id="showChanges" checked /> Sorot relation yang berubah</label>
+      <label class="check"><input type="checkbox" id="highlightCase" checked /> Sorot case marker (di, oleh)</label>
+      <label class="check"><input type="checkbox" id="showUpos" checked /> Tampilkan UPOS</label>
+      <label class="check"><input type="checkbox" id="showPunct" /> Tampilkan punctuation</label>
+      <div class="legend" aria-label="Legenda semantic role manual">
+        <span><i class="dot agent"></i>Agent</span>
+        <span><i class="dot patient"></i>Patient</span>
+        <span><i class="dot location"></i>Location</span>
+        <span><i class="dot case-dot"></i>Case marker</span>
+      </div>
+    </section>
+
+    <p class="note"><strong>Catatan:</strong> Warna <em>Agent / Patient / Location</em> adalah layer penjelas yang ditambahkan secara manual. Itu bukan label <em>semantic role</em> dari UD.</p>
+
+    <section id="treeGrid" class="tree-grid" aria-live="polite"></section>
+
+    <section class="bottom-grid">
+      <article class="panel comparison">
+        <h2>Apa yang berubah?</h2>
+        <p>Bandingkan <strong>grammatical relation</strong> dari semantic role yang sama.</p>
+        <div class="table-wrap"><table>
+          <thead><tr><th>Semantic role (manual)</th><th>Active</th><th>Passive</th><th>Status Peran</th><th>Perubahan Sintaksis</th></tr></thead>
+          <tbody id="compareBody"></tbody>
+        </table></div>
+        <p class="insight" id="voiceComparison"></p>
+      </article>
+      <aside class="panel inspector">
+        <h2>Token inspector</h2>
+        <div id="inspectorContent" class="inspector-placeholder">Klik satu kata dalam dependency tree untuk melihat <code>ID</code>, <code>HEAD</code>, <code>DEPREL</code>, <code>UPOS</code>, dan <code>FEATS</code>.</div>
+      </aside>
+    </section>
+
+    <section class="panel bonus-card" id="bonusSection">
+      <h2>💡 Bonus Challenge: Perbandingan 'di perpustakaan' vs 'dibaca'</h2>
+      <div class="bonus-content">
+        <p><strong>Pertanyaan Evaluasi:</strong> Mengapa preposisi <code>di</code> menjadi node tersendiri bertipe <code>case</code>, sedangkan prefiks <code>di-</code> pada <code>dibaca</code> tidak dipecah menjadi node tersendiri?</p>
+        <div class="bonus-grid">
+          <div class="bonus-item">
+            <h3>1. 'di perpustakaan' (Preposisi Terpisah · §2.5 Treatment of prepositions)</h3>
+            <p>Kata <code>di</code> adalah preposisi mandiri (<code>UPOS=ADP</code>). Dalam Universal Dependencies, kata bermakna leksikal (<em>content word</em>) yaitu <code>perpustakaan</code> menjadi <strong>head</strong>, sedangkan preposisi <code>di</code> menjadi <strong>dependent</strong> dengan fungsi <code>DEPREL=case</code>.</p>
+          </div>
+          <div class="bonus-item">
+            <h3>2. 'dibaca' (Morfem Terikat/Afiks · §2.1 Lexicalism)</h3>
+            <p>Prefiks <code>di-</code> adalah afiks infleksional pembentuk diatesis pasif. Sesuai prinsip <strong>lexicalism</strong>, pohon sintaksis menghubungkan kata-kata utuh (<em>whole words</em>), bukan memecah morfem afiks. Status pasif diwakili lewat fitur morfologis <code>Voice=Pass</code> pada node verba.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <p>Data: <code>data/contoh_kalimat.conllu</code> · Contoh anotasi ilustratif, bukan salinan Indonesian-GSD.</p>
+      <p>Bacaan: <a href="https://nlp.stanford.edu/~manning/papers/USD_LREC14_UD_revision.pdf" target="_blank" rel="noreferrer">de Marneffe et al. (UD paper)</a> · <a href="https://universaldependencies.org/treebanks/id_gsd/index.html" target="_blank" rel="noreferrer">UD Indonesian-GSD</a> · <a href="https://universaldependencies.org/format.html" target="_blank" rel="noreferrer">CoNLL-U format</a></p>
+    </footer>
+  </main>
+</body>
+</html>

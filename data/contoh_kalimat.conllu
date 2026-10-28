@@ -1,0 +1,21 @@
+# sent_id = aktif
+# text = Siti membaca buku di perpustakaan.
+# note = Anotasi ilustratif untuk pembelajaran, bukan kutipan dari treebank resmi.
+1	Siti	Siti	PROPN	_	_	2	nsubj	_	_
+2	membaca	baca	VERB	_	Voice=Act	0	root	_	_
+3	buku	buku	NOUN	_	_	2	obj	_	_
+4	di	di	ADP	_	_	5	case	_	_
+5	perpustakaan	perpustakaan	NOUN	_	_	2	obl	_	SpaceAfter=No
+6	.	.	PUNCT	_	_	2	punct	_	_
+
+# sent_id = pasif
+# text = Buku dibaca oleh Siti di perpustakaan.
+# note = Anotasi ilustratif untuk pembelajaran, bukan kutipan dari treebank resmi.
+1	Buku	buku	NOUN	_	_	2	nsubj:pass	_	_
+2	dibaca	baca	VERB	_	Voice=Pass	0	root	_	_
+3	oleh	oleh	ADP	_	_	4	case	_	_
+4	Siti	Siti	PROPN	_	_	2	obl:agent	_	_
+5	di	di	ADP	_	_	6	case	_	_
+6	perpustakaan	perpustakaan	NOUN	_	_	2	obl	_	SpaceAfter=No
+7	.	.	PUNCT	_	_	2	punct	_	_
+
